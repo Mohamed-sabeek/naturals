@@ -86,7 +86,7 @@ const Contact = () => {
             <div className="absolute inset-0 bg-gray-200">
               {/* Replace src with actual google map iframe when available */}
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.6393933758376!2d77.0048103!3d10.6651261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8377c8e6dfd15%3A0xc3b5e4075b22591e!2sPollachi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+                src="https://maps.google.com/maps?q=Naturals%20Beauty%20Academy%20Pollachi&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 

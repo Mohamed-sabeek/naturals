@@ -38,11 +38,11 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-1">Address</h4>
-                  <p className="text-gray-600">
+                  <a href="https://maps.app.goo.gl/ihj1S5ovwetszas3A" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary transition-colors block">
                     first floor, 04, palladam road,<br />
                     LIG Colony, Indra Nagar,<br />
                     Pollachi, Tamil Nadu 642002
-                  </p>
+                  </a>
                 </div>
               </div>
 

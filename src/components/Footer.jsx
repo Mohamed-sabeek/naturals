@@ -66,7 +66,9 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
-                <span>first floor, 04, palladam road,<br />LIG Colony, Indra Nagar,<br />Pollachi, Tamil Nadu 642002</span>
+                <a href="https://maps.app.goo.gl/ihj1S5ovwetszas3A" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  first floor, 04, palladam road,<br />LIG Colony, Indra Nagar,<br />Pollachi, Tamil Nadu 642002
+                </a>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Phone size={18} className="text-primary flex-shrink-0" />

@@ -59,9 +59,9 @@ const Hero = () => {
               <div className="flex items-center gap-1.5 bg-white border border-gray-100 shadow-sm px-3.5 py-1.5 rounded-full text-sm font-bold text-gray-700">
                 <span className="text-primary">🏆</span> Established 2016
               </div>
-              <div className="flex items-center gap-1.5 bg-white border border-gray-100 shadow-sm px-3.5 py-1.5 rounded-full text-sm font-bold text-gray-700">
+              <a href="https://maps.app.goo.gl/ihj1S5ovwetszas3A" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-white border border-gray-100 shadow-sm px-3.5 py-1.5 rounded-full text-sm font-bold text-gray-700 hover:border-primary/30 hover:shadow-md transition-all">
                 <span className="text-red-500">📍</span> first floor, 04, palladam road, LIG Colony, Indra Nagar, Pollachi, Tamil Nadu 642002
-              </div>
+              </a>
             </div>
 
             {/* Feature Badges */}

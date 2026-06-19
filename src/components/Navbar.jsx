@@ -175,8 +175,10 @@ const Navbar = () => {
                 <div className="mt-8 text-center px-4">
                   <p className="text-xs text-gray-400 font-medium leading-relaxed">
                     Naturals Training Academy <br />
-                    first floor, 04, palladam road, LIG Colony, <br />
-                    Indra Nagar, Pollachi, Tamil Nadu 642002 <br />
+                    <a href="https://maps.app.goo.gl/ihj1S5ovwetszas3A" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                      first floor, 04, palladam road, LIG Colony, <br />
+                      Indra Nagar, Pollachi, Tamil Nadu 642002
+                    </a> <br />
                     08460461849
                   </p>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, CheckCircle, Quote, MessageCircle, MapPin, Trophy } from 'lucide-react';
 
@@ -31,8 +31,33 @@ const Reviews = () => {
     }
   ];
 
-  // Duplicate for seamless infinite marquee loop
-  const marqueeReviews = [...reviews, ...reviews];
+  // Duplicate for seamless infinite loop
+  const marqueeReviews = [...reviews, ...reviews, ...reviews];
+
+  const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId;
+    const autoScroll = () => {
+      if (!isHovered) {
+        scrollContainer.scrollLeft += 1;
+        // Reset scroll position for infinite loop effect
+        // We use scrollWidth / 3 because we duplicated the array 3 times to ensure no blank spaces.
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 3) {
+          scrollContainer.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    animationId = requestAnimationFrame(autoScroll);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered]);
 
   return (
     <section id="reviews" className="py-24 lg:py-32 relative overflow-hidden bg-[#FAFAFC]">
@@ -63,7 +88,7 @@ const Reviews = () => {
           </motion.p>
         </div>
 
-        {/* Rating Summary Card (Above Testimonials) */}
+        {/* Rating Summary Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,18 +123,26 @@ const Reviews = () => {
         </motion.div>
 
         {/* Carousel Container */}
-        <div className="w-[100vw] relative left-1/2 -translate-x-1/2 overflow-hidden mb-16 py-8">
+        <div className="w-[100vw] relative left-1/2 -translate-x-1/2 mb-16 py-8">
           {/* Fading Edges */}
           <div className="absolute top-0 bottom-0 left-0 w-16 md:w-48 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
           
-          <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 px-6">
+          <div 
+            ref={scrollRef}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={() => setIsHovered(true)}
+            onTouchEnd={() => setIsHovered(false)}
+            className="flex gap-6 px-6 overflow-x-auto scrollbar-hide w-full cursor-grab active:cursor-grabbing"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {marqueeReviews.map((review, index) => (
               <div 
                 key={index}
-                className="w-[320px] md:w-[420px] shrink-0 bg-[rgba(255,255,255,0.95)] border border-[#E9D5FF] rounded-[24px] p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgb(139,92,246,0.12)] hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 relative group cursor-grab active:cursor-grabbing flex flex-col"
+                className="w-[320px] md:w-[420px] shrink-0 bg-[rgba(255,255,255,0.95)] border border-[#E9D5FF] rounded-[24px] p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgb(139,92,246,0.12)] hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 relative flex flex-col"
               >
-                <Quote size={40} className="absolute top-6 right-6 text-purple-100 opacity-50 group-hover:text-purple-200 transition-colors duration-300" />
+                <Quote size={40} className="absolute top-6 right-6 text-purple-100 opacity-50 transition-colors duration-300" />
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
@@ -175,18 +208,9 @@ const Reviews = () => {
 
       </div>
       
-      {/* CSS for infinite marquee */}
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-50% - 12px)); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-        /* Pause animation on hover */
-        .animate-marquee:hover {
-          animation-play-state: paused;
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}} />
     </section>
